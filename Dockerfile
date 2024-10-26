@@ -20,6 +20,14 @@ COPY demo/*.txt demo-files/
 	
 COPY tomcat.tar.gz /app	
 		
-ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz tomcat-add.tar.gz	
+#ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz tomcat-add.tar.gz	
+	
+
+# port
+EXPOSE 5100	
+
+ENTRYPOINT ["/app/apache-tomcat-10.1.31/bin/catalina.sh"]
+CMD ["run"]
+
 	
 	

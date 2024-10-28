@@ -1,0 +1,6 @@
+name: ayvinion
+
+services:
+  first:
+   image: alpine:latest
+   command: ["top"] #CMD

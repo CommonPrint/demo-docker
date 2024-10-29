@@ -4,3 +4,20 @@ services:
   first:
    image: alpine:latest
    command: ["top"] #CMD
+  
+  database:
+   image: postgres:latest
+   ports:
+    - "5436:5432"
+   environment:
+    - POSTGRES_PASSWORD=pass
+    - POSTGRES_USER=postgres
+    
+  web:
+    image: ayvinion-web
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+    build:
+     context: .
+     dockerfile: prod.Dockerfile 
+     

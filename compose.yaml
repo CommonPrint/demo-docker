@@ -16,6 +16,8 @@ services:
     - POSTGRES_USER=postgres
    networks:
     - backend
+   volumes:
+    - db-data:/var/lib/postgresql/data
     
   web:
     image: ayvinion-web
@@ -33,5 +35,8 @@ networks:
    driver: bridge
   frontend:
    driver: bridge
-
+   
+   
+volumes:
+  db-data:
      

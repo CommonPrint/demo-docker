@@ -4,6 +4,8 @@ services:
   first:
    image: alpine:latest
    command: ["top"] #CMD
+   networks:
+    - frontend
   
   database:
    image: postgres:latest
@@ -12,12 +14,24 @@ services:
    environment:
     - POSTGRES_PASSWORD=pass
     - POSTGRES_USER=postgres
+   networks:
+    - backend
     
   web:
     image: ayvinion-web
     environment:
      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
     build:
-     context: .
-     dockerfile: prod.Dockerfile 
+      context: .
+      dockerfile: prod.Dockerfile
+    networks:
+       - backend
+       - frontend
+
+networks:
+  backend:
+   driver: bridge
+  frontend:
+   driver: bridge
+
      
